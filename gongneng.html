@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+    <title>其他功能</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+        }
+
+        .outer-rounded-box {
+            width: 377px;
+            height: 300px;
+            display: flex;
+            box-sizing: border-box;
+            padding: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #83CF77;
+            margin: 8px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: scaleIn 1.5s forwards 1.7s;
+            animation-fill-mode: forwards;
+        }
+@keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .outer-rounded-boxa {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-rounded-box {
+            width: 110px;
+            flex-grow: 1px;
+            box-sizing: border-box;
+            padding: 5px;
+            margin-right: 6px;
+            border-radius: 10px;
+            background-color: #F8FDDF;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideInLeft 1s forwards 2s;
+        }
+@keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .inner-rounded-boxa {
+            flex-grow: 1;
+            width: 270px;
+            overflow: auto;
+            border-radius: 10px;
+            background-color: #F8FDDF;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateX(100%);
+            animation: slideInRight 1s forwards 2.5s;
+        }
+@keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .top-decoration {
+            width: 100px;
+            height: 4px;
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-left: 50px;
+            margin-bottom: 6px;
+            background-color: #ffffff;
+            //小横条
+            position: absolute;
+            opacity: 0;
+            transform: translateY(-100%);
+            animation: slideDown 1s forwards 2.5s;
+        }
+@keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .inner-bt {
+            width: 100%;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #83CF77;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .switch {
+            --circle-dim: 1.4em;
+            font-size: 12px;
+            position: absolute;
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+            margin-left: 180px;
+        }
+
+        .switcha {
+            --circle-dim: 1.4em;
+            font-size: 12px;
+            position: absolute;
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+            margin-left: 5px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switcha input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ceffff;
+            transition: .4s;
+            border-radius: 30px;
+        }
+
+        .slider-card {
+            position: absolute;
+            content: "";
+            height: var(--circle-dim);
+            width: var(--circle-dim);
+            border-radius: 20px;
+            left: 0.3em;
+            bottom: 0.3em;
+            transition: .4s;
+            pointer-events: none;
+        }
+
+        .slider-card-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            perspective: 1000px;
+            border-radius: 50%;
+            transition: .4s transform;
+        }
+
+        .slider-card-front {
+            background-color: #000000;
+        }
+
+        .slider-card-back {
+            background-color: #379237;
+            transform: rotateY(180deg);
+        }
+
+        input:checked ~ .slider-card .slider-card-back {
+            transform: rotateY(0);
+        }
+
+        input:checked ~ .slider-card .slider-card-front {
+            transform: rotateY(-180deg);
+        }
+
+        input:checked ~ .slider-card {
+            transform: translateX(1.5em);
+        }
+
+        input:checked ~ .slider {
+            background-color: #9ed99c;
+        }
+
+        .button {
+            width: 100%;
+            height: 30px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #222224;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #859B72;
+            transition: background-color 0.5s;
+        }
+
+        .fadeIn {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+@keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .inner-gn {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .inner-gn-content {
+            flex-grow: 1;
+        }
+
+        /* 添加淡入淡出动画
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }*/
+
+        .blue-background {
+            box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+            color: white;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            display: none;
+            animation: fadeInOut 0.5s ease forwards;
+            flex-direction: column;
+        }
+
+        .blue-backgroundx {
+            box-shadow: inset 0 -10px 8px rgba(0, 0, 0, 0.1);
+            color: white;
+            height: 250px;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            animation: fadeInOut 0.5s ease forwards;
+            flex-direction: column;
+        }
+
+        .chutixtext {
+            font-size: 13px;
+            color: #859B72;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            margin-top: 5px;
+            margin-left: 5px;
+            text-shadow: 2px 1px 5px rgba(255, 255, 255,0.5);
+        }
+
+        .chutixtextgg {
+            font-size: 13px;
+            color: #859B72;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            margin-top: 5px;
+            margin-left: 5px;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255,0.5);
+        }
+
+        .box {
+            z-index: 5;
+            width: 100%;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0,0,0,0.2));
+        }
+
+        h1 {
+            z-index: 5;
+            color: #fff;
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 0px;
+            outline: none;
+            --c: lightseagreen;
+            text-shadow: 0 0 10px var(--c),
+            0 0 20px var(--c),
+            0 0 40px var(--c),
+            0 0 80px var(--c),
+            0 0 160px var(--c);
+            animation: animate 5s linear infinite;
+        }
+
+@keyframes animate {
+            to {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        input.range {
+            width: 100%;
+            height: 15px;
+            background: #1f1f21;
+            appearance: none;
+            border: 1px solid #242424;
+            border-radius: 999px;
+            outline: none;
+            overflow: hidden;
+        }
+
+        input.range::-webkit-slider-thumb {
+            appearance: none;
+            width: 13px;
+            height: 13px;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid #1e90ff;
+            box-shadow: calc(-33vw - 15px) 0 0 35vw rgba(30, 144, 255, 0.7),
+            inset 0 0 5px #1e90ff;
+            cursor: pointer;
+        }
+
+        input.range::-webkit-slider-thumb:hover {
+            background: #0070ff;
+        }
+
+body {
+            opacity: 0.8; /* 设置全局透明度为80% */
+            overflow: hidden;
+        }
+       
+        a {
+            text-decoration: none; /* 去掉链接文本下划线 */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="outer-rounded-box">
+            <div class="inner-rounded-box">
+                <div class="inner-bt">
+                    <div class="box">
+<h1><a href="https://qm.qq.com/q/QWiKFxwRiy" target="_blank">👎👎👎</a></h1>
+                    </div>
+                </div>
+                <!-- 按钮组 -->
+                <div class="button" onclick="toggleColor(1);p1()">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" style="transform: translateY(3px);"><g fill="none" fill-rule="evenodd"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="M15.992 3.013C17.326 2.236 19 3.197 19 4.741V8a3 3 0 1 1 0 6v3c0 1.648-1.881 2.589-3.2 1.6l-2.06-1.546A8.658 8.658 0 0 0 10 15.446v2.844a2.71 2.71 0 0 1-5.316.744l-1.57-5.496a4.7 4.7 0 0 1 3.326-7.73l3.018-.168a9.344 9.344 0 0 0 4.19-1.259zM5.634 15.078l.973 3.407A.71.71 0 0 0 8 18.29v-3.01l-1.56-.087a4.723 4.723 0 0 1-.806-.115M20 11a1 1 0 0 0-1-1v2a1 1 0 0 0 1-1" /></g></svg>
+                    公告
+                </div>
+                <div class="button" onclick="toggleColor(2);p2()">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" style="transform: translateY(3px);"><path fill="currentColor" d="m19.05 21.6l-2.925-2.9l-1.5 1.5q-.275.275-.7.275t-.7-.275q-.575-.575-.575-1.425t.575-1.425l4.225-4.225q.575-.575 1.425-.575t1.425.575q.275.275.275.7t-.275.7l-1.5 1.5l2.9 2.925q.3.3.3.7t-.3.7l-1.25 1.25q-.3.3-.7.3t-.7-.3M21.7 6.2L10.65 17.25l.125.1q.575.575.575 1.425t-.575 1.425q-.275.275-.7.275t-.7-.275l-1.5-1.5l-2.925 2.9q-.3.3-.7.3t-.7-.3L2.3 20.35q-.3-.3-.3-.7t.3-.7l2.9-2.925l-1.5-1.5q-.275-.275-.275-.7t.275-.7q.575-.575 1.425-.575t1.425.575l.1.125L17.425 2.475q.275-.275.638-.425t.762-.15H21q.425 0 .713.288T22 2.9v2.575q0 .2-.075.388T21.7 6.2M6.225 10.125l-3.65-3.65Q2.3 6.2 2.15 5.838T2 5.075V2.9q0-.425.288-.712T3 1.9h2.175q.4 0 .763.15t.637.425l3.65 3.65q.3.3.3.713t-.3.712L7.65 10.125q-.3.3-.712.3t-.713-.3" /></svg>
+                    全局
+                </div>
+                <div class="button" onclick="toggleColor(3);p3()">
+                    <svg width="1rem" height="1rem" viewBox="0 0 20 20" style="transform: translateY(3px);"><path fill="currentColor" d="M11.5 4.5a2 2 0 1 1 2.612 1.905L15.707 8H17.5a1.5 1.5 0 0 1 0 3h-3.223c-.63 0-1.234-.25-1.68-.696l-.097-.097l-1.043 1.043l1.397 1.396A.5.5 0 0 1 13 13v3.5a1.5 1.5 0 0 1-3 0v-1.793L8.453 13.16l-1.002.752a2.94 2.94 0 0 1-1.765.588H2.5a1.5 1.5 0 0 1 0-3h4.25A2.25 2.25 0 0 0 9 9.25V8h1a.5.5 0 0 0 0-1H8.5a.5.5 0 0 0-.5.5v1.75a1.25 1.25 0 1 1-2.5 0V7A2.5 2.5 0 0 1 8 4.5z" /></svg>
+                    娱乐
+                </div>
+                 <div class="button" onclick="toggleColor(4);p4()">
+                    <svg width="1rem" height="1rem" viewBox="0 0 24 24" style="transform: translateY(3px);"><path fill="currentColor" d="M13 2v1h-1v6h-1v1H9v1H8v1H7v1H5v-1H4v-1H3V9H2v6h1v1h1v1h1v1h1v4h2v-1H7v-1h1v-1h1v-1h1v1h1v3h2v-1h-1v-4h1v-1h1v-1h1v-3h1v1h1v-2h-2V9h5V8h-3V7h5V3h-1V2m-7 1h1v1h-1Z" /></svg>
+                    进阶
+                </div>
+                <div class="button" onclick="toggleColor(5);p5()">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" style="transform: translateY(3px);"><g fill="none"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" /><path fill="currentColor" d="M10.75 2.567a2.5 2.5 0 0 1 2.5 0L19.544 6.2a2.5 2.5 0 0 1 1.25 2.165v7.268a2.5 2.5 0 0 1-1.25 2.165l-6.294 3.634a2.5 2.5 0 0 1-2.5 0l-6.294-3.634a2.5 2.5 0 0 1-1.25-2.165V8.366A2.5 2.5 0 0 1 4.456 6.2zM12 9a3 3 0 1 0 0 6a3 3 0 0 0 0-6" /></g></svg>
+                    视野
+                </div> 
+            </div>
+            <div class="outer-rounded-boxa">
+                <div class="top-decoration"></div>
+                <div class="inner-rounded-boxa">
+                    <div id="page1">
+                        <div class="blue-backgroundx">
+                            <div class="chutixtextgg">
+                                温馨提示！！！<br>
+                                欢迎使用😘<br>
+                                <span style="color: #FF5809; font-size: 14px; text-shadow: 2px 2px 5px #FF5809;">
+                                    用自定义吐球 解断1吐数值为0 解断2数值为35 解断3数值为55
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="page2">
+    <div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="margin-left: 5px;color:#859B72; font-weight: bold;font-size: 12.5px;">
+                IPad滑动视野
+            </span>
+        </div>
+        <label class="switch">
+            <input type="checkbox" oninput="按钮_IPad视野()">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+        <div class="blue-background" id="滑动组件_IPad视野">
+            <div class="chutixtext">
+                <span id="标签_IPad视野_展示">Official</span>
+            </div>
+            <input id="滑动条_IPad视野" oninput="事件_滑动条_IPad视野(this)" type="range" class="range" value="1.5" min="0" max="13" step="0.1">
+        </div>
+    </div>
+
+    <div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="margin-left: 5px;color:#859B72; font-weight: bold;font-size: 12.5px;">
+                IPhone滑动视野
+            </span>
+        </div>
+        <label class="switch">
+            <input type="checkbox" oninput="按钮_IPhone视野()">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+        <div class="blue-background" id="滑动组件_IPhone视野">
+            <div class="chutixtext">
+                <span id="标签_IPhone视野_展示">Official</span>
+            </div>
+            <input id="滑动条_IPhone视野" oninput="事件_滑动条_IPhone视野(this)" type="range" class="range" value="0.4620536" min="0" max="10" step="0.1">
+        </div>
+    </div>
+
+    <div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="margin-left: 5px;color:#859B72; font-weight: bold;font-size: 12.5px;">
+                全局滑动加速
+            </span>
+        </div>
+        <label class="switch">
+            <input type="checkbox" oninput="按钮_全局()">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+        <div class="blue-background" id="滑动组件_全局">
+            <div class="chutixtext">
+                <span id="标签_全局_展示">Official</span>
+            </div>
+            <input id="滑动条_全局" oninput="事件_滑动条_全局(this)" type="range" class="range" value="1.3" min="0" max="100" step="1">
+        </div>
+    </div>
+</div>
+
+
+
+ <div id="page3">
+
+
+
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">吐球加速自定义（范围 -99 至 100）</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="tuqiu1(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+   
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">粘合加速自定义1（合球看着舒服）</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="nianhe1(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">粘合加速自定义2（合球看着舒服）</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="nianhe2(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+
+
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">自定义名字大小</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="mingzi(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+
+
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">自定义孢子大小</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="baozi(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+
+<div class="inner-gn">
+        <div class="inner-gn-content">
+            <span style="color:#859B72; font-weight: bold; font-size: 12.5px;">自定义菜豆大小</span>
+        </div>
+
+        <label class="switch">
+            <input type="checkbox" oninput="caidou(this)">
+            <div class="slider"></div>
+            <div class="slider-card">
+                <div class="slider-card-face slider-card-front"></div>
+                <div class="slider-card-face slider-card-back"></div>
+            </div>
+        </label>
+    </div>
+
+
+</div>
+
+
+<div id="page4">
+  <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">解断1（吐球值为0）</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="xlytq(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+
+<div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">自定义界面（隐藏或显示图标）</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="sld(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+      
+      <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">双连点（当前吐球数值翻倍）</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="wxfs(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+ <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">摇杆灵敏（使摇杆操作更快速流畅）</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="shuliang(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+
+<div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">摇杆解限(摇杆上限解除，提升摇杆操作灵敏度)</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="renshu(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div> 
+
+
+</div>
+
+            <div id="page5">
+  <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">全方位平板视野自定义</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="ipad(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+      <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">全方位手机视野自定义</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="iphone(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+      <div class="inner-gn">
+    <div class="inner-gn-content">
+      <span style="margin-left: 5px; color: #859B72; font-weight: bold; font-size: 12.5px;">全局加速（画面加速，增加手感）</span>
+    </div>
+    <label class="switch">
+      <input type="checkbox" oninput="quanjv(this)">
+      <div class="slider"></div>
+      <div class="slider-card">
+        <div class="slider-card-face slider-card-front"></div>
+        <div class="slider-card-face slider-card-back"></div>
+      </div>
+    </label>
+  </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- UI -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+
+
+
+        function ReadInt(Addr) {
+            return Number(h5gg.getValue(Addr, "I32"));
+        }
+        function ReadLong(Addr) {
+            return Number(h5gg.getValue(Addr, "I64"));
+        }
+        function ReadFloat(Addr) {
+            return Number(h5gg.getValue(Addr, "F32"));
+        }
+        function ReadBool(Addr) {
+            return Number(h5gg.getValue(Addr, "U8"));
+        }
+        function IsNull(Addr) {
+            return (Addr < 0x100000000 || Addr > 0xFFFFFFFFF);
+        }
+
+
+        var 游戏模块 = Number(h5gg.getRangesList('UnityFramework')[0].start);
+        var 内存缓冲 = 0;
+
+
+        function 按钮_IPad视野() {
+    var UI_Buffer = document.getElementById("滑动组件_IPad视野");
+    if (UI_Buffer.style.display === "block") {
+        UI_Buffer.style.display = "none";
+        // 恢复默认数值
+        var 内存缓冲 = ReadLong(游戏模块 + 0x4b4eb00);
+        if (IsNull(内存缓冲)) return;
+        内存缓冲 = ReadLong(内存缓冲 + 0x380);
+        if (IsNull(内存缓冲)) return;
+        内存缓冲 = ReadLong(内存缓冲 + 0x5f0);
+        if (IsNull(内存缓冲)) return;
+        内存缓冲 = ReadLong(内存缓冲 + 0x2f0);
+
+        if (IsNull(内存缓冲)) return;
+        内存缓冲 = ReadLong(内存缓冲 + 0x420);
+
+        if (IsNull(内存缓冲)) return;
+        内存缓冲 = ReadLong(内存缓冲 + 0x600);
+
+        if (IsNull(内存缓冲)) return;
+        h5gg.setValue(内存缓冲 + 0x6c, 1.5, "F32");
+        
+    } else {
+        UI_Buffer.style.display = "block";
+    }
+}
+function 事件_滑动条_IPad视野(Event) {
+    var UI_标签 = document.getElementById("标签_IPad视野_展示");
+    UI_标签.innerHTML = "ipad视野数值: " + Event.value;
+    
+    // 恢复默认数值
+    var 内存缓冲 = ReadLong(游戏模块 + 0x4b4eb00);
+    if (IsNull(内存缓冲)) return;
+    内存缓冲 = ReadLong(内存缓冲 + 0x380);
+
+    if (IsNull(内存缓冲)) return;
+    内存缓冲 = ReadLong(内存缓冲 + 0x5f0);
+
+    if (IsNull(内存缓冲)) return;
+    内存缓冲 = ReadLong(内存缓冲 + 0x2f0);
+
+    if (IsNull(内存缓冲)) return;
+    内存缓冲 = ReadLong(内存缓冲 + 0x420);
+
+    if (IsNull(内存缓冲)) return;
+    内存缓冲 = ReadLong(内存缓冲 + 0x600);
+
+
+    if (IsNull(内存缓冲)) return;
+    h5gg.setValue(内存缓冲 + 0x6c, Number(Event.value), "F32");
+}
+
+
+
+
+
+function 按钮_IPhone视野() {
+            var UI_Buffer = document.getElementById("滑动组件_IPhone视野");
+            if (UI_Buffer.style.display == "block") {
+                UI_Buffer.style.display = "none";
+                // 恢复默认数值
+                内存缓冲 = ReadLong(游戏模块 + 0x4813b90);
+                
+                if (IsNull(内存缓冲)) return;
+                内存缓冲 = ReadLong(内存缓冲 + 0xb8);
+                
+
+                if (IsNull(内存缓冲)) return;
+                h5gg.setValue(内存缓冲 + 0x3a0, 0.4620536, "F32");
+                
+            } else {
+                UI_Buffer.style.display = "block";
+            }
+        }
+        function 事件_滑动条_IPhone视野(Event) {
+            var UI_标签 = document.getElementById("标签_IPhone视野_展示");
+            UI_标签.innerHTML = "iPhone视野数值: " + Event.value;
+            
+            // 恢复默认数值
+            内存缓冲 = ReadLong(游戏模块 + 0x4813b90);
+            
+            if (IsNull(内存缓冲)) return;
+            内存缓冲 = ReadLong(内存缓冲 + 0xb8);
+
+            
+
+            if (IsNull(内存缓冲)) return;
+            h5gg.setValue(内存缓冲 + 0x3a0, Number(Event.value), "F32");
+        }
+        
+        
+
+var interval1; // 在全局范围内定义 interval1 变量
+
+function 按钮_全局() {
+    var UI_Buffer = document.getElementById("滑动组件_全局");
+    if (UI_Buffer.style.display === "block") {
+        UI_Buffer.style.display = "none";
+        
+        var 内存缓冲 = ReadLong(游戏模块 + 0x49fb4c8);
+        if (IsNull(内存缓冲)) return;
+
+        h5gg.setValue(内存缓冲 + 0xFC, 1, "F32");
+        
+        clearInterval(interval1); // 清除间隔
+    } else {
+        clearInterval(interval1); // 清除间隔
+        UI_Buffer.style.display = "block";
+    }
+}
+
+function 事件_滑动条_全局(Event) {
+    clearInterval(interval1); // 先清除之前可能存在的间隔
+
+    var UI_标签 = document.getElementById("标签_全局_展示");
+    UI_标签.innerHTML = "全局加速数值: " + Event.value;
+
+    var 内存缓冲 = ReadLong(游戏模块 + 0x49fb4c8);
+    if (IsNull(内存缓冲)) return;
+
+    interval1 = setInterval(function() {
+        h5gg.setValue(内存缓冲 + 0xFC, Number(Event.value), "F32");
+    }, 0);
+}
+
+
+
+var interval2;
+
+
+
+
+var interval3;
+
+function tuqiu1(tuqiu1Checked) {
+    h5gg.clearResults();
+    if (tuqiu1Checked.checked === true) {
+    var hk1 = prompt('请输入自定义吐球速度');
+h5gg.searchNumber("216", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("1123", "I32", "0x4");
+h5gg.searchNumber("1123", "I32", "0x00000000", "0x200000000");
+var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        interval3 = setInterval(function() {
+            for (var i = 0; i < count; i++) {
+                var addr9 = r[i].address;
+                var addr10 = Number(addr9) + 156;
+           h5gg.setValue(addr10, hk1, "F32");
+        }
+    }, 0); 
+    } else {
+        h5gg.clearResults();
+        clearInterval(interval3);
+        h5gg.searchNumber("216", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("1123", "I32", "0x4");
+h5gg.searchNumber("1123", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+
+        for (let i = 0; i < count; i++) {
+            let addr11 = r[i].address;
+            let addr12 = Number(addr11) + 156;
+            h5gg.setValue(addr12, 1, "F32");
+        }
+    }
+}
+
+
+function nianhe1(nianhe1Checked) {
+    h5gg.clearResults();
+    if (nianhe1Checked.checked === true) {
+    var hk2 = prompt('默认粘合速度1.7建议0.1～1.7之间');
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("65773", "I32", "0x4");
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr13 = r[i].address;            
+            var addr14 = Number(addr13) - 208;
+            h5gg.setValue(addr14, hk2, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("65773", "I32", "0x4");
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr15 = r[i].address;            
+            var addr16 = Number(addr15) - 208;
+            h5gg.setValue(addr16, 1.7, "F32");
+        }
+    }
+}
+
+
+function nianhe2(nianhe2Checked) {
+    h5gg.clearResults();
+    if (nianhe2Checked.checked === true) {
+    var hk3 = prompt('默认粘合速度0.5882354建议0～0.58之间');
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("65773", "I32", "0x4");
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr17 = r[i].address;            
+            var addr18 = Number(addr17) - 184;
+            h5gg.setValue(addr18, hk3, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("65773", "I32", "0x4");
+        h5gg.searchNumber("25690114", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr19 = r[i].address;            
+            var addr20 = Number(addr19) - 184;
+            h5gg.setValue(addr20, 0.5882353, "F32");
+        }
+    }
+}
+
+
+function mingzi(mingziChecked) {
+    h5gg.clearResults();
+    if (mingziChecked.checked === true) {
+    var hk7 = prompt('默认名字大小为1.875建议修改为1');
+        h5gg.clearResults();
+        h5gg.searchNumber("983549", "I32", "0x00000000", "0x200000000");
+        
+        h5gg.searchNearby("1114128", "I32", "0x4");
+        h5gg.searchNumber("1114128", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("15", "I32", "0x4");
+
+        h5gg.searchNumber("15", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr33 = r[i].address;            
+            var addr34 = Number(addr33) + 28;
+            h5gg.setValue(addr34, hk7, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+        h5gg.searchNumber("983549", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("1114128", "I32", "0x4");
+
+        h5gg.searchNumber("1114128", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("15", "I32", "0x4");
+
+        h5gg.searchNumber("15", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr35 = r[i].address;            
+            var addr36 = Number(addr35) + 28;
+            h5gg.setValue(addr36, 1.875, "F32");
+        }
+    }
+}
+
+
+function baozi(baoziChecked) {
+    h5gg.clearResults();
+    if (baoziChecked.checked === true) {
+var hk8 = prompt('默认1请输入自定义孢子大小');
+        h5gg.clearResults();
+
+        h5gg.searchNumber("393221", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("262447", "I32", "0x4");
+
+        h5gg.searchNumber("262447", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("2", "I32", "0x4");
+
+        h5gg.searchNumber("2", "I32", "0x00000000", "0x200000000");
+
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr37 = r[i].address;            
+            var addr38 = Number(addr37) + 1856;
+            h5gg.setValue(addr38, hk8, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+
+        h5gg.searchNumber("393221", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("262447", "I32", "0x4");
+
+        h5gg.searchNumber("262447", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("2", "I32", "0x4");
+
+        h5gg.searchNumber("2", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr39 = r[i].address;            
+            var addr40 = Number(addr39) + 1856;
+            h5gg.setValue(addr40, 1, "F32");
+        }
+    }
+}
+
+
+function caidou(caidouChecked) {
+    h5gg.clearResults();
+    if (caidouChecked.checked === true) {
+        var hk9 = prompt('默认0.32请输入自定义彩豆的大小');
+        h5gg.clearResults();
+
+        h5gg.searchNumber("721640", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("786443", "I32", "0x4");
+
+        h5gg.searchNumber("786443", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("851980", "I32", "0x4");
+
+        h5gg.searchNumber("851980", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr41 = r[i].address;            
+            var addr42 = Number(addr41) + 4;
+            h5gg.setValue(addr42, hk9, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+
+        h5gg.searchNumber("721640", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("786443", "I32", "0x4");
+
+        h5gg.searchNumber("786443", "I32", "0x00000000", "0x200000000");
+
+        h5gg.searchNearby("851980", "I32", "0x4");
+
+        h5gg.searchNumber("851980", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr43 = r[i].address;            
+            var addr44 = Number(addr43) + 4;
+            h5gg.setValue(addr44, 0.32, "F32");
+        }
+    }
+}
+
+
+
+function xlytq(xlytqChecked) {
+    h5gg.clearResults();
+    h5gg.searchNumber('216', 'I32', '0x00000000', '0x200000000');
+    h5gg.searchNearby('1123', 'I32', '0x4');
+    h5gg.searchNumber('1123', 'I32', '0x00000000', '0x200000000');
+    var count = h5gg.getResultsCount();
+    var r = h5gg.getResults(count);
+    setInterval(function () {
+                    for (var i = 0; i < count; i++)
+                    {
+                        var addr5 = r[i].address;
+                        var dz = (Number(addr5) + 156);
+                        h5gg.setValue(dz, 55, "F32");
+                    }
+                }, 0);
+}
+
+
+function sld(sldChecked) {
+   setButtonImage('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACAvzbMAAAABmJLR0QA/wD/AP+gvaeTAAACn0lEQVR42u3OsQ2AMAADQYt1shbLM0BqZ4JIFEihuCu/+gQAvtL2bjtOfwDwX9emP0nm6TkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF5a+qQIao24iT8AAAAASUVORK5CYII=');
+
+}
+
+
+
+
+var interval4;
+
+function wxfs(wxfsChecked) {
+        h5gg.clearResults();
+    if (wxfsChecked.checked === true) {
+                h5gg.searchNumber("197720", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("131376", "I32", "0x4");
+        h5gg.searchNumber("131376", "I32", "0x00000000", "0x200000000");
+
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr5 = r[i].address;            
+            var addr6 = Number(addr5) - 20;
+            h5gg.setValue(addr6, -99999999, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+                h5gg.searchNumber("197720", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("131376", "I32", "0x4");
+        h5gg.searchNumber("131376", "I32", "0x00000000", "0x200000000");
+
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr7 = r[i].address;            
+            var addr8 = Number(addr7) - 20;
+            h5gg.setValue(addr8, 0.05, "F32");
+        }
+    }
+}
+
+
+
+var interval90
+
+function shuliang(shuliangChecked) {
+   h5gg.clearResults();
+    h5gg.searchNumber('0.02', 'F32', '0x10000000', '0x160000000');
+    h5gg.searchNearby('50', 'F32', '0x40');
+    h5gg.searchNearby('19502', 'I32', '0x40');
+    h5gg.searchNumber('19502', 'I32', '0x10000000', '0x160000000');
+    var count = h5gg.getResultsCount();
+    var r = h5gg.getResults(count);
+    for (var i = 0; i < count; i++)
+    {
+        var addr5 = r[i].address;
+        var dz = (Number(addr5) + 64);
+        h5gg.setValue(dz, 0.0001, "F32");
+    }
+    
+}
+
+
+var interval91
+
+function renshu(renshuChecked) {
+    h5gg.clearResults();
+    h5gg.searchNumber('100', 'F32', '0x10000000', '0x160000000');
+    h5gg.searchNearby('131240', 'I32', '0x40');
+    var count = h5gg.getResultsCount();
+    var r = h5gg.getResults(count);
+    for (var i = 0; i < count; i++)
+    {
+        var addr1 = r[i].address;
+        var weishu = /C$/;
+        var pd = weishu.test(addr1);
+        if (pd)
+        {
+            h5gg.setValue(addr1, 9999999999, "F32");
+        }
+    }
+}
+
+
+
+function ipad(ipadChecked) {
+    h5gg.clearResults();
+    if (ipadChecked.checked === true) {
+    var hk10 = prompt('默认ipad视野为1.5请输入自定义修改数据');
+        h5gg.searchNumber("-1027080192", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("60", "I32", "0x4");
+        h5gg.searchNumber("60", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr10000 = r[i].address;            
+            var addr10001 = Number(addr10000) - 132;
+            h5gg.setValue(addr10001, hk10, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+h5gg.searchNumber("-1027080192", "I32", "0x00000000", "0x200000000");
+        h5gg.searchNearby("60", "I32", "0x4");
+        h5gg.searchNumber("60", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr10002 = r[i].address;            
+            var addr10003 = Number(addr10002) - 132;
+            h5gg.setValue(addr10003, 1.5, "F32");
+        }
+    }
+}
+
+
+
+
+function iphone(iphoneChecked) {
+    h5gg.clearResults();
+    if (iphoneChecked.checked === true) {
+    var hk11 = prompt('默认iPhone视野为0.4620536请输入自定义修改数据');
+        h5gg.searchNumber("-3278106", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("-8880791", "I32", "0x4");
+h5gg.searchNumber("-8880791", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr10004 = r[i].address;            
+            var addr10005 = Number(addr10004) + 88;
+            h5gg.setValue(addr10005, hk11, "F32");
+        }
+    } else {
+        h5gg.clearResults();
+h5gg.searchNumber("-3278106", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("-8880791", "I32", "0x4");
+h5gg.searchNumber("-8880791", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr10006 = r[i].address;            
+            var addr10007 = Number(addr10006) + 88;
+            h5gg.setValue(addr10007, 0.4620536, "F32");
+        }
+    }
+}
+
+
+var interval5;
+function quanjv(quanjvChecked) {
+    h5gg.clearResults();
+    if (quanjvChecked.checked === true) {
+    var hk12 = prompt('默认全局速度为1请输入自定义修改数据');
+        h5gg.searchNumber("412090411", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("2145", "I32", "0x20");
+h5gg.searchNumber("2145", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        interval5 = setInterval(function() {
+            for (var i = 0; i < count; i++) {
+            var addr10008 = r[i].address;            
+            var addr10009 = Number(addr10008) + 260;
+            h5gg.setValue(addr10009, hk12, "F32");
+          }
+    }, 0); 
+    } else {
+        clearInterval(interval5);
+        h5gg.clearResults();
+h5gg.searchNumber("412090411", "I32", "0x00000000", "0x200000000");
+h5gg.searchNearby("19288", "I32", "0x4");
+h5gg.searchNumber("19288", "I32", "0x00000000", "0x200000000");
+        var count = h5gg.getResultsCount();
+        var r = h5gg.getResults(count);
+        for (var i = 0; i < count; i++) {
+            var addr10010 = r[i].address;            
+            var addr10011 = Number(addr10010) + 244;
+            h5gg.setValue(addr10011, 1, "F32");
+        }
+    }
+}
+
+
+function ipad(ipadChecked) {
+var hk1 = prompt('提供全方位视野(原始数值1.5，用户可自行调整)');
+    h5gg.clearResults();
+    h5gg.searchNumber("0.01", "F32", "0x00000000", "0x200000000");
+    h5gg.searchNearby("1.5", "F32", "0x20");
+    h5gg.searchNumber("1.5", "F32", "0x00000000", "0x200000000");
+    var count = h5gg.getResultsCount();
+    var r = h5gg.getResults(count);
+    for (var i = 0; i < count; i++)
+    {
+        var addr8 = r[i].address;
+        var weishu = /4$/;
+        var pd = weishu.test(addr8);
+        if (pd)
+        {
+            h5gg.setValue(addr8, hk1, "F32");
+        }
+    }
+}
+
+
+function iphone(iphoneChecked) {
+ var hk1 = prompt('提供全方位视野(用户可自行调整');
+    h5gg.clearResults();
+    h5gg.searchNumber("640", "F32", "0x00000000", "0x200000000");
+    h5gg.searchNearby("0.5", "F32", "0x24");
+    h5gg.searchNumber("640", "F32", "0x00000000", "0x200000000");
+    var count = h5gg.getResultsCount();
+    var r = h5gg.getResults(count);
+    for (var i = 0; i < count; i++)
+    {
+        var addr5 = r[i].address;
+        var dz = (Number(addr5) + 8);
+        h5gg.setValue(dz, hk1, "F32");
+    }
+}
+
+
+
+
+</script>
+    <script>
+        function gaotiaoRangeview(event) {
+            document.getElementById("gaotiaoRangeView").innerHTML = event.target.value;
+        }
+        function yuantiaoRangeview(event) {
+            document.getElementById("yuantiaoRangeView").innerHTML = event.target.value;
+        }
+        function toggleColor(btnNum) {
+            var buttons = document.getElementsByClassName('button');
+            for (var i = 0; i < buttons.length; i++) {
+                if (i === btnNum - 1) {
+                    buttons[i].style.backgroundColor = '#83CF77';
+                } else {
+                    buttons[i].style.backgroundColor = '#83CF77';
+                }
+            }
+        } //侧边背景颜色
+        function GaotiaoGN() {
+            var GaotiaoGN = document.getElementById("GaotiaoGN");
+            GaotiaoGN.style.display = GaotiaoGN.style.display === "none" ? "block": "none";
+        }
+        function YuantiaoGN() {
+            var YuantiaoGN = document.getElementById("YuantiaoGN");
+            YuantiaoGN.style.display = YuantiaoGN.style.display === "none" ? "block": "none";
+        }
+        function NetworkDatdGN() {
+            var NetworkDatdGN = document.getElementById("NetworkDatdGN");
+            NetworkDatdGN.style.display = NetworkDatdGN.style.display === "none" ? "block": "none";
+        }
+        toggleColor(1);
+        setButtonImage('https://s21.ax1x.com/2024/07/10/pkfW3wj.png');
+        $(document).ready(function() {
+            document.body.onselectstart = document.body.ondrag = function() {
+                return false;
+            }
+            $("input").blur(function() {
+                window.scroll(0, 0);
+            });
+            document.body.addEventListener('touchstart', function() {});
+            if (typeof h5gg != 'udefined') {
+                var w = 393;
+                var h = 318;
+                setWindowDrag(0, 0, w, 30);
+                var layout = function() {
+                    if (window.lastorientation == window.orientation) return;
+                    window.lastorientation = window.orientation;
+                    if (Math.abs(window.orientation) == 90) {
+                        var x = (window.screen.height - w) / 2;
+                        var y = (window.screen.width - h) / 2;
+                        setWindowRect(x, y, w, h);
+                    } else {
+                        var x = (window.screen.width - w) / 2;
+                        var y = (window.screen.height - h) / 2;
+                        setWindowRect(x, y, w, h);
+                    }
+                }
+                layout();
+                window.addEventListener("orientationchange", layout, false);
+            }
+        });
+        $("#version").text(h5gg_internel_version);
+
+        page2.style.display = 'none';
+        page3.style.display = 'none';
+        page4.style.display = 'none';
+        page5.style.display = 'none';
+        function p1() {
+            page1.style.display = 'block';
+            page2.style.display = 'none';
+            page3.style.display = 'none';
+            page4.style.display = 'none';
+            page5.style.display = 'none';
+        }
+        function p2() {
+            page2.style.display = 'block';
+            page1.style.display = 'none';
+            page3.style.display = 'none';
+            page4.style.display = 'none';
+            page5.style.display = 'none';
+        }
+        function p3() {
+            page3.style.display = 'block';
+            page2.style.display = 'none';
+            page1.style.display = 'none';
+            page4.style.display = 'none';
+            page5.style.display = 'none';
+        }
+        function p4() {
+            page4.style.display = 'block';
+            page2.style.display = 'none';
+            page3.style.display = 'none';
+            page1.style.display = 'none';
+            page5.style.display = 'none';
+        }
+        function p5() {
+            page5.style.display = 'block';
+            page2.style.display = 'none';
+            page3.style.display = 'none';
+            page4.style.display = 'none';
+            page1.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
